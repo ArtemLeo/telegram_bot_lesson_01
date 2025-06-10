@@ -48,7 +48,7 @@
 ### 🧩 Інструменти та корисні посилання:
 
 - [aiogram](https://docs.aiogram.dev/en/latest/): Асинхронний фреймворк для Telegram Bot API
-- [@BotFather](https://t.me/BotFather): Телеграм бот для керування ботами
+- [BotFather](https://t.me/BotFather): Телеграм бот для керування ботами
 - [Keyboard builder](https://docs.aiogram.dev/en/latest/#keyboard-builder): Утиліта для створення клавіатур
 - [Command](https://docs.aiogram.dev/en/latest/): Фільтр для обробки команд
 - [Magic filters](https://docs.aiogram.dev/en/latest/#magic-filters): Утиліта для створення custom фільтрів
