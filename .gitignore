@@ -86,6 +86,8 @@ fabric.properties
 
 .idea/*
 
+__pycache__
+
 !.idea/codeStyles
 !.idea/runConfigurations
 
