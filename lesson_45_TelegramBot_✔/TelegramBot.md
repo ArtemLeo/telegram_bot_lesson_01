@@ -468,6 +468,80 @@ async def start(message: Message) -> None:
 - Необхідно перейти в **Telegram Bot** за посиланням, яке ми отримали від **BotFather**.
 - Натиснути кнопку `start` або вручну написати повідомлення з текстом `/start`
 
+Виконаємо рефакторинг нашого коду та видалимо рядки, які ми більше не будемо використовувати.
+
+```python
+# from os import getenv
+
+# Bot token can be obtained via https://t.me/BotFather
+# TOKEN = getenv("BOT_TOKEN")
+
+# All handlers should be attached to the Router (or Dispatcher)
+
+@dp.message()
+async def echo_handler(message: Message) -> None:
+    """
+    Handler will forward receive a message back to the sender
+
+    By default, message handler will handle all message types (like a text, photo, sticker etc.)
+    """
+    try:
+        # Send a copy of the received message
+        await message.send_copy(chat_id=message.chat.id)
+    except TypeError:
+        # But not all the types is supported to be copied so need to handle it
+        await message.answer("Nice try!")
+```
+
+### 🧩 Фінальний код після сьогоднішнього заняття:
+
+```python
+# Імпортуємо необхідні модулі
+import asyncio  # Для асинхронного програмування
+import logging  # Для логування подій
+import sys  # Для доступу до деяких змінних та функцій, пов'язаних з інтерпретатором Python
+
+# Імпортуємо токен бота з конфігураційного файлу
+from config import BOT_TOKEN as TOKEN
+
+# Імпортуємо необхідні класи та функції з бібліотеки aiogram
+from aiogram import Bot, Dispatcher, html
+from aiogram.client.default import DefaultBotProperties
+from aiogram.enums import ParseMode
+from aiogram.filters import CommandStart, Command
+from aiogram.types import Message
+
+# Ініціалізуємо диспетчер для обробки оновлень
+dp = Dispatcher()
+
+
+# Обробник для команди /start
+@dp.message(Command("start"))
+async def start(message: Message) -> None:
+    # Відповідаємо на команду /start, вітаючи користувача
+    await message.answer(
+        f"Hello🖐, {html.bold(message.from_user.full_name)}!\n"
+        "I'm your first Telegram Bot 🥳"
+    )
+
+
+# Головна асинхронна функція для запуску бота
+async def main() -> None:
+    # Ініціалізуємо екземпляр бота з токеном та властивостями за замовчуванням
+    bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+
+    # Запускаємо цикл опитування для отримання оновлень
+    await dp.start_polling(bot)
+
+
+# Перевіряємо, чи скрипт запускається напряму
+if __name__ == "__main__":
+    # Налаштовуємо базове логування для виведення інформаційних повідомлень у стандартний потік виведення
+    logging.basicConfig(level=logging.INFO, stream=sys.stdout)
+    # Запускаємо головну асинхронну функцію
+    asyncio.run(main())
+```
+
 [Повернутися до змісту](#зміст-уроку)
 
 ---
