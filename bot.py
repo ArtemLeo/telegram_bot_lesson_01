@@ -10,7 +10,7 @@ from config import BOT_TOKEN as TOKEN
 from aiogram import Bot, Dispatcher, html
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
-from aiogram.filters import CommandStart, Command
+from aiogram.filters import Command
 from aiogram.types import Message
 
 # Ініціалізуємо диспетчер для обробки оновлень

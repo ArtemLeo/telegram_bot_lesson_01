@@ -1,7 +1,7 @@
 # ✅ Урок 41: Основи Telegram-бота. Бібліотека `aiogram 3`
 
 ---
-<img src="/Documentations/Images/main_image.png" alt="pygame" width="1500">
+<img src="main_image.png" alt="pygame" width="1500">
 
 ## Зміст уроку:
 
@@ -9,12 +9,13 @@
 2. [Що таке **Telegram-Bot**?](#2-що-таке-telegram-bot)
 3. [Створення проєкту **MyTelegramBot**](#3-створення-проєкту-my_telegram_bot)
 4. [Налаштування **Telegram-Bot**](#4-налаштування-telegram-bot)
-5. [Реалізація команди `/start`](#5-реалізація-команди-start)
-6. [Підсумки уроку 🚀](#6-підсумки-уроку)
+5. [Створення головного файлу програми `bot.py`](#5-створення-головного-файлу-програми-botpy)
+6. [Реалізація команди `/start`](#6-реалізація-команди-start)
+7. [Підведення підсумків 🚀](#7-підведення-підсумків-)
 
 > 🔗 Useful Links:
 
-- [Aiogram3](https://docs.aiogram.dev/en/latest/)
+- [aiogram3](https://docs.aiogram.dev/en/latest/)
 - [BotFather](https://t.me/BotFather)
 
 ---
@@ -104,7 +105,7 @@
 - **PyCharm** автоматично активує віртуальне оточення при створенні нового проєкту.
 - Якщо віртуальне оточення потрібно створити вручну, можна скористатися терміналом у PyCharm.
 
-```bash
+```text
 # Створення віртуального оточення
 python -m venv venv
 
@@ -118,14 +119,14 @@ source venv/bin/activate
 [Встановлюємо](https://packaging.python.org/en/latest/tutorials/installing-packages/#installing-from-pypi)
 бібліотеку [aiogram](https://docs.aiogram.dev/en/latest/install.html):
 
-```bash
+```text
 pip install -U aiogram
 ```
 
 Наступну команду необхідно виконати для створення файлу `requirements.txt`, який буде містити список інстальованих
 бібліотек.
 
-```bash
+```text
 pip freeze > requirements.txt
 ```
 
@@ -334,7 +335,7 @@ async def command_start_handler(message: Message) -> None:
     await message.answer(f"Hello, {html.bold(message.from_user.full_name)}!")
 ```
 
-### 💡 Розглянемо кожен рядок цього коду, щоб зрозуміти, що відбувається:
+### 🧩 Розглянемо кожен рядок цього коду:
 
 ### Декоратор:
 
@@ -419,7 +420,7 @@ async def echo_handler(message: Message) -> None:
         await message.answer("Nice try!")
 ```
 
-### 💡 Розглянемо кожен рядок цього коду, щоб зрозуміти, що відбувається:
+### 🧩 Розглянемо кожен рядок цього коду:
 
 ### Декоратор:
 
@@ -486,7 +487,7 @@ except TypeError:
 from aiogram.filters import CommandStart
 
 # New string
-from aiogram.filters import CommandStart, Command
+from aiogram.filters import Command
 ```
 
 Новий `import` дозволить використовувати кастомні (користувацькі) фільтри в обробниках.
@@ -564,7 +565,7 @@ from config import BOT_TOKEN as TOKEN
 from aiogram import Bot, Dispatcher, html
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
-from aiogram.filters import CommandStart, Command
+from aiogram.filters import Command
 from aiogram.types import Message
 
 # Ініціалізуємо диспетчер для обробки оновлень
@@ -602,7 +603,7 @@ if __name__ == "__main__":
 
 ---
 
-## 6. Підведення підсумків 🚀
+## 7. Підведення підсумків 🚀
 
 > На цьому уроці ми вивчили наступні теми:
 
